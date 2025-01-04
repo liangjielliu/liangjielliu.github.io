@@ -5,100 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liangjie Liu - Academic Homepage</title>
     <style>
+        /* 全局样式 */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #eef2f3;
             color: #333;
         }
+
+        /* 顶部导航栏 */
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* 容器样式 */
         .container {
             width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #444;
+
+        h2 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+            color: #2c3e50;
         }
+
+        p, ul {
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "•";
+            color: #2c3e50;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
         a {
-            color: #0066cc;
+            color: #3498db;
             text-decoration: none;
         }
+
         a:hover {
-            text-decoration: underline;
+            color: #1abc9c;
         }
-        .section {
-            margin-bottom: 20px;
-        }
+
+        /* 页脚样式 */
         .footer {
             text-align: center;
+            padding: 20px 0;
             margin-top: 20px;
-            font-size: 0.9em;
-            color: #666;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
+    <!-- 顶部导航栏 -->
+    <div class="navbar">
+        <h1>Liangjie Liu - Academic Homepage</h1>
+    </div>
+
+    <!-- 主内容 -->
     <div class="container">
-        <h1>Liangjie Liu</h1>
-        <p>Welcome to my academic homepage!</p>
+        <h2>About Me</h2>
+        <p>
+            I am currently pursuing an M.Sc. in Data-Driven Modeling at <strong>The Hong Kong University of Science and Technology</strong>, mentored by Prof. Yi Wang. My research interests focus on <strong>machine learning, algorithms, and causal inference</strong>.
+        </p>
+        <p>
+            I hold a B.S. in Mathematics and Applied Mathematics from <strong>Wuhan University</strong>, where I explored various fields such as <strong>statistics, computer science, operations research, and economics</strong> under the guidance of Prof. Suoqin Jin.
+        </p>
+        <p>You can find my <a href="cv/Liangjie_Liu_Resume.pdf" target="_blank">CV here</a>.</p>
+    </div>
 
-        <div class="section">
-            <h2>About Me</h2>
-            <p>
-                I am currently pursuing an M.Sc. in Data-Driven Modeling at <strong>The Hong Kong University of Science and Technology</strong>, mentored by Prof. Yi Wang. My research interests focus on <strong>machine learning, algorithms, and causal inference</strong>.
-            </p>
-            <p>
-                I hold a B.S. in Mathematics and Applied Mathematics from <strong>Wuhan University</strong>, where I explored various fields such as <strong>statistics, computer science, operations research, and economics</strong> under the guidance of Prof. Suoqin Jin.
-            </p>
-            <p>You can find my <a href="cv/Liangjie_Liu_Resume.pdf" target="_blank">CV here</a>.</p>
-        </div>
+    <div class="container">
+        <h2>Education</h2>
+        <ul>
+            <li><strong>The Hong Kong University of Science and Technology (HKUST)</strong>  
+                <br>M.Sc. in Data-Driven Modeling  
+                <br>2024.09 – Present  
+                <br>Courses: Statistical Machine Learning (A+), Deep Learning, Algorithm Programming, etc.
+            </li>
+            <li><strong>Wuhan University (WHU)</strong>  
+                <br>B.S. in Mathematics and Applied Mathematics  
+                <br>2019.09 – 2023.06  
+                <br>Dissertation: Graph Neural Network-based Clustering of Spatial Transcriptomic Data  
+                <br>Honors: Outstanding Graduate (Top 10%), WHU Scholarships, and more.
+            </li>
+        </ul>
+    </div>
 
-        <div class="section">
-            <h2>Education</h2>
-            <ul>
-                <li><strong>The Hong Kong University of Science and Technology (HKUST)</strong>  
-                    <br>M.Sc. in Data-Driven Modeling  
-                    <br>2024.09 – Present  
-                    <br>Courses: Statistical Machine Learning (A+), Deep Learning, Algorithm Programming, etc.
-                </li>
-                <li><strong>Wuhan University (WHU)</strong>  
-                    <br>B.S. in Mathematics and Applied Mathematics  
-                    <br>2019.09 – 2023.06  
-                    <br>Dissertation: Graph Neural Network-based Clustering of Spatial Transcriptomic Data  
-                    <br>Honors: Outstanding Graduate (Top 10%), WHU Scholarships, and more.
-                </li>
-            </ul>
-        </div>
+    <div class="container">
+        <h2>Professional Experience</h2>
+        <ul>
+            <li><strong>Research Assistant</strong>  
+                <br>Department of Industrial Engineering and Decision Analytics, HKUST  
+                <br>2024.07 – Present  
+                <br>Collaborating on causal inference and machine learning research.
+            </li>
+            <li><strong>Intern in Data Science</strong>  
+                <br>Weixin Group, Tencent  
+                <br>2024.09 – Present  
+                <br>Conducting data analysis, optimization, and experimental design for recommendation systems.
+            </li>
+            <li><strong>Software Engineer</strong>  
+                <br>Shenzhen Institute of Computing Sciences  
+                <br>2023.07 – 2024.08  
+                <br>Developed database drivers, APIs, and specialized SQL tools.
+            </li>
+        </ul>
+    </div>
 
-        <div class="section">
-            <h2>Professional Experience</h2>
-            <ul>
-                <li><strong>Research Assistant</strong>  
-                    <br>Department of Industrial Engineering and Decision Analytics, HKUST  
-                    <br>2024.07 – Present  
-                    <br>Collaborating on causal inference and machine learning research.
-                </li>
-                <li><strong>Intern in Data Science</strong>  
-                    <br>Weixin Group, Tencent  
-                    <br>2024.09 – Present  
-                    <br>Conducting data analysis, optimization, and experimental design for recommendation systems.
-                </li>
-                <li><strong>Software Engineer</strong>  
-                    <br>Shenzhen Institute of Computing Sciences  
-                    <br>2023.07 – 2024.08  
-                    <br>Developed database drivers, APIs, and specialized SQL tools.
-                </li>
-            </ul>
-        </div>
-
-        <div class="footer">
-            © 2025 Liangjie Liu | Contact: liangjie_liu@outlook.com
-        </div>
+    <!-- 页脚 -->
+    <div class="footer">
+        © 2025 Liangjie Liu | Contact: <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
     </div>
 </body>
 </html>
