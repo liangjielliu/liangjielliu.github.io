@@ -1,198 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liangjie Liu - Academic Homepage</title>
-    <style>
-        /* 全局样式 */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liangjie Liu - Academic Homepage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
 
-        /* 顶部导航栏 */
-        .navbar {
-            background-color: #007bff;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .navbar {
+      background-color: #007bff;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .navbar h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+    .navbar h1 {
+      margin: 0;
+      font-size: 28px;
+    }
 
-        /* CV 下载按钮 */
-        .cv-button-container {
-            text-align: center;
-            margin: 30px 0 -10px 0;
-        }
+    .container {
+      width: 85%;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .cv-button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
+    .photo {
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .cv-button:hover {
-            background-color: #0056b3;
-        }
+    h2 {
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 5px;
+      color: #007bff;
+    }
 
-        /* 容器样式 */
-        .container {
-            width: 85%;
-            margin: 40px auto;
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+    p, ul {
+      line-height: 1.8;
+    }
 
-        .photo {
-            display: block;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
 
-        h2 {
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 5px;
-            color: #007bff;
-        }
+    ul li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+      position: relative;
+    }
 
-        p, ul {
-            line-height: 1.8;
-        }
+    ul li:before {
+      content: "•";
+      color: #007bff;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
 
-        ul li {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            position: relative;
-        }
+    a:hover {
+      color: #0056b3;
+    }
 
-        ul li:before {
-            content: "•";
-            color: #007bff;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
+    .cv-button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
+    .cv-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
 
-        a:hover {
-            color: #0056b3;
-        }
+    .cv-button:hover {
+      background-color: #0056b3;
+    }
 
-        /* 页脚样式 */
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            background-color: #343a40;
-            color: white;
-            font-size: 14px;
-        }
-    </style>
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      background-color: #343a40;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <div class="navbar">
-        <h1>Liangjie Liu - Academic Homepage</h1>
-    </div>
+  <div class="navbar">
+    <h1>Liangjie Liu - Academic Homepage</h1>
+  </div>
 
-    <!-- CV 下载按钮 -->
-    <div class="cv-button-container">
-        <a href="cv/Liangjie_Liu_CV.pdf" download class="cv-button">📄 Download CV (PDF)</a>
-    </div>
+  <div class="container">
+    <img src="images/profile.jpg" alt="Liangjie Liu" class="photo" />
+    <h2>About Me</h2>
+    <p>
+      I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM) at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025.
+      Prior to this, I completed my MSc in Data-Driven Modeling and worked as a part-time Research Assistant at the Department of Industrial Engineering and Decision Analytics (IEDA) at <strong>The Hong Kong University of Science and Technology (HKUST)</strong>.
+    </p>
+    <p>
+      During my time at HKUST, I also interned as a <strong>Research Data Scientist</strong> at <strong>Tencent’s Weixin Group</strong>, where I studied how recommendation interference affects user retention, focusing on causal inference, experimental design, and modeling user behavior.
+    </p>
+    <p>
+      From 2023 to 2024, I worked full-time as a software engineer at the Shenzhen Institute of Computing Sciences, developing database drivers, APIs, and SQL-based tools. I earned my B.Sc. in Mathematics from <strong>Wuhan University</strong> in 2023.
+    </p>
+    <p>
+      My current research interests focus on <strong>reinforcement learning</strong> and <strong>supply chain optimization</strong>, aiming to improve decision-making in uncertain and dynamic environments using machine learning.
+    </p>
+  </div>
 
-    <!-- 主内容 -->
-    <div class="container">
-        <img src="images/profile.jpg" alt="Liangjie Liu" class="photo">
-        <h2>About Me</h2>
-        <p>
-            I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM) at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025. Prior to this, I completed my MSc in Data-Driven Modeling and worked as a part-time Research Assistant in the Department of Industrial Engineering and Decision Analytics (IEDA) at <strong>The Hong Kong University of Science and Technology (HKUST)</strong>. During the same period, I interned at Tencent's Weixin Group, where I focused on data analysis and optimization tasks for recommendation systems.
-        </p>
-        <p>
-            My current research interests center around reinforcement learning and supply chain optimization. I aim to develop intelligent decision-making models that can improve operational efficiency under uncertainty, leveraging modern machine learning techniques in dynamic and complex environments.
-        </p>
-        <p>
-            Previously, I earned my B.S. in Mathematics from <strong>Wuhan University</strong> in 2023, where my undergraduate thesis on graph neural networks for spatial transcriptomics was advised by Prof. Suoqin Jin. From 2023 to 2024, I worked full-time as a software engineer at the Shenzhen Institute of Computing Sciences, developing database tools and APIs to support advanced computational applications.
-        </p>
-    </div>
+  <div class="container">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>National University of Singapore (NUS)</strong>  
+        <br>Ph.D. in Industrial Systems Engineering and Management  
+        <br>2025.08 – Present  
+        <br>Supervisor: Prof. WANG Tong
+      </li>
+      <li><strong>The Hong Kong University of Science and Technology (HKUST)</strong>  
+        <br>M.Sc. in Data-Driven Modeling  
+        <br>2024.09 – 2025.07  
+        <br>GPA: 3.96 / 4.3  
+        <br>Relevant Courses: Statistical Machine Learning (A+), Numerical Methods and Modeling (A+), Quantitative Time Series Analysis (A+)
+      </li>
+      <li><strong>Wuhan University (WHU)</strong>  
+        <br>B.Sc. in Mathematics and Applied Mathematics  
+        <br>2019.09 – 2023.06  
+        <br>Honors: Outstanding Graduate (Top 10%), Multiple Scholarships
+      </li>
+    </ul>
+  </div>
 
-    <div class="container">
-        <h2>Education</h2>
-        <ul>
-            <li><strong>National University of Singapore (NUS)</strong>  
-                <br>Ph.D. in Industrial Systems Engineering and Management  
-                <br>2025.08 – Present  
-                <br>Supervisor: Prof. WANG Tong
-            </li>
-            <li><strong>The Hong Kong University of Science and Technology (HKUST)</strong>  
-                <br>M.Sc. in Data-Driven Modeling  
-                <br>2024.09 – 2025.07  
-                <br>Relevant Courses: Statistical Machine Learning (A+), Deep Learning, Stochastic Processes, etc.
-            </li>
-            <li><strong>Wuhan University (WHU)</strong>  
-                <br>B.Sc. in Mathematics and Applied Mathematics  
-                <br>2019.09 – 2023.06  
-                <br>Thesis: Graph Neural Network-based Clustering of Spatial Transcriptomic Data  
-                <br>Honors: Outstanding Graduate (Top 10%), Multiple Scholarships.
-            </li>
-        </ul>
-    </div>
+  <div class="container">
+    <h2>Professional Experience</h2>
+    <ul>
+      <li><strong>Research Assistant</strong>  
+        <br>Department of Industrial Engineering and Decision Analytics, HKUST  
+        <br>2024.09 – 2025.07  
+        <br>Supervisor: Prof. ZHAN Ruohan  
+        <br>Worked on reinforcement learning and operations research applications.
+      </li>
+      <li><strong>Research Data Scientist Intern</strong>  
+        <br>Weixin Group, Tencent  
+        <br>2024.09 – 2025.07  
+        <br>Researched user retention under recommendation interference using data science and causal methods.
+      </li>
+      <li><strong>Software Engineer</strong>  
+        <br>Shenzhen Institute of Computing Sciences  
+        <br>2023.07 – 2024.08  
+        <br>Built database APIs and performance tools for SQL-based systems.
+      </li>
+    </ul>
+  </div>
 
-    <div class="container">
-        <h2>Professional Experience</h2>
-        <ul>
-            <li><strong>Research Assistant</strong>  
-                <br>Department of Industrial Engineering and Decision Analytics, HKUST  
-                <br>2024.09 – Present  
-                <br>Supervisor: Prof. ZHAN Ruohan  
-                <br>Collaborating on research in reinforcement learning and operations research.
-            </li>
-            <li><strong>Data Science Intern</strong>  
-                <br>Weixin Group, Tencent  
-                <br>2024.09 – Present  
-                <br>Conducted data analysis, optimization, and experimental design for recommendation systems.
-            </li>
-            <li><strong>Software Engineer</strong>  
-                <br>Shenzhen Institute of Computing Sciences  
-                <br>2023.07 – 2024.08  
-                <br>Developed database drivers, APIs, and specialized SQL tools.
-            </li>
-        </ul>
-    </div>
+  <!-- 下载按钮置于页面底部 -->
+  <div class="cv-button-container">
+    <a href="cv/Liangjie_Liu_CV.pdf" download class="cv-button">📄 Download CV (PDF)</a>
+  </div>
 
-    <!-- 页脚 -->
-    <div class="footer">
-        © 2025 Liangjie Liu | Contact: <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
-    </div>
+  <div class="footer">
+    © 2025 Liangjie Liu | Contact: <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
+  </div>
 </body>
 </html>
