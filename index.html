@@ -5,189 +5,751 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liangjie Liu - Academic Homepage</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* CSS Variables - Academic Blue Theme */
+    :root {
+      --primary: #1a365d;
+      --secondary: #2c5282;
+      --accent: #3182ce;
+      --bg-white: #ffffff;
+      --bg-light: #f7fafc;
+      --text-dark: #2d3748;
+      --text-muted: #4a5568;
+      --border-color: #e2e8f0;
+    }
+
+    /* Reset & Base Styles */
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      color: #343a40;
+      box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* Navigation */
     .navbar {
-      background-color: #007bff;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 0;
       z-index: 1000;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .navbar h1 {
-      margin: 0;
-      font-size: 28px;
+    .navbar-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .container {
-      width: 85%;
-      margin: 40px auto;
-      background: white;
-      border-radius: 10px;
+    .navbar-brand {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .navbar-nav a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav a:hover {
+      color: white;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+    }
+
+    /* Section Styles */
+    section {
+      background: var(--bg-white);
+      border-radius: 8px;
       padding: 40px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s ease;
     }
 
-    .photo {
-      display: block;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    section:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
-      border-bottom: 3px solid #007bff;
-      padding-bottom: 5px;
-      color: #007bff;
+      font-family: Georgia, serif;
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-color);
     }
 
-    p, ul {
-      line-height: 1.8;
+    h3 {
+      font-family: Georgia, serif;
+      color: var(--secondary);
+      font-size: 18px;
+      margin-bottom: 8px;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li {
+    p {
       margin-bottom: 15px;
-      padding-left: 20px;
-      position: relative;
+      color: var(--text-muted);
     }
 
-    ul li:before {
-      content: "•";
-      color: #007bff;
+    /* Hero Section */
+    .hero {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .hero-photo {
+      flex-shrink: 0;
+    }
+
+    .hero-photo img {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-content h1 {
+      font-family: Georgia, serif;
+      color: var(--primary);
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero-content .title {
+      color: var(--secondary);
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 16px;
+    }
+
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--border-color);
+      border-radius: 3px;
     }
 
-    a {
-      color: #007bff;
-      text-decoration: none;
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
     }
 
-    a:hover {
-      color: #0056b3;
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--bg-white);
+      box-shadow: 0 0 0 2px var(--accent);
     }
 
-    .cv-button-container {
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-period {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .timeline-subtitle {
+      color: var(--secondary);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-details {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Skills Tags */
+    .skills-category {
+      margin-bottom: 20px;
+    }
+
+    .skills-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .skills-category h4 {
+      color: var(--secondary);
+      font-size: 15px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* News Items */
+    .news-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      align-items: flex-start;
+    }
+
+    .news-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .news-date {
+      flex-shrink: 0;
+      width: 70px;
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .news-content {
+      color: var(--text-muted);
+    }
+
+    /* Research Interests */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .research-card {
+      background: var(--bg-light);
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .research-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .research-card p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Publications */
+    .publications-placeholder {
       text-align: center;
-      margin-top: 20px;
+      padding: 40px;
+      color: var(--text-muted);
+      background: var(--bg-light);
+      border-radius: 8px;
+    }
+
+    .publications-placeholder .coming-soon {
+      font-size: 18px;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .contact-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .contact-info h4 {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* CV Button */
+    .cv-section {
+      text-align: center;
+      padding: 30px;
+      background: var(--bg-white);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     .cv-button {
-      background-color: #007bff;
+      display: inline-block;
+      background: var(--primary);
       color: white;
-      padding: 10px 20px;
-      font-size: 14px;
+      padding: 12px 30px;
+      font-size: 15px;
       border-radius: 6px;
       text-decoration: none;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .cv-button:hover {
-      background-color: #0056b3;
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
     }
 
-    .footer {
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
-      background-color: #343a40;
+    /* Footer */
+    footer {
+      background: var(--primary);
       color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.85);
       font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .navbar-nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-photo img {
+        width: 160px;
+        height: 160px;
+      }
+
+      .hero-content h1 {
+        font-size: 26px;
+      }
+
+      section {
+        padding: 30px 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .navbar, .cv-section, footer {
+        display: none;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <h1>Liangjie Liu - Academic Homepage</h1>
-  </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">Liangjie Liu</div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="navbar-nav" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <div class="container">
-    <img src="images/profile.jpg" alt="Liangjie Liu" class="photo" />
-    <h2>About Me</h2>
-    <p>
-      I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM) at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025.
-      Prior to this, I completed my MSc in Data-Driven Modeling and worked as a Research Assistant at the Department of Industrial Engineering and Decision Analytics (IEDA) at <strong>The Hong Kong University of Science and Technology (HKUST)</strong>.
-    </p>
-    <p>
-      During my time at HKUST, I also interned as a <strong>Research Data Scientist</strong> at <strong>Tencent’s Weixin Group</strong>, where I studied how recommendation interference affects user retention, focusing on causal inference, experimental design, and modeling user behavior.
-    </p>
-    <p>
-      From 2023 to 2024, I worked full-time as a software engineer at the Shenzhen Institute of Computing Sciences, developing database drivers, APIs, and SQL-based tools. I earned my B.Sc. in Mathematics from <strong>Wuhan University</strong> in 2023.
-    </p>
-    <p>
-      My current research interests focus on <strong>data-driven decision making</strong>, <strong>reinforcement learning</strong> and <strong>supply chain optimization</strong>, aiming to improve decision-making in uncertain and dynamic environments.
-    </p>
-  </div>
+  <main>
+    <!-- Hero / About Section -->
+    <section id="about" class="hero">
+      <div class="hero-photo">
+        <img src="images/profile.jpg" alt="Liangjie Liu" />
+      </div>
+      <div class="hero-content">
+        <h1>Liangjie Liu</h1>
+        <p class="title">PhD Student, National University of Singapore</p>
+        <p>
+          I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM) at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025.
+        </p>
+        <p>
+          Prior to this, I completed my MSc in Data-Driven Modeling and worked as a Research Assistant at the Department of Industrial Engineering and Decision Analytics (IEDA) at <strong>HKUST</strong>.
+        </p>
+        <p>
+          My research interests focus on <strong>data-driven decision making</strong>, <strong>reinforcement learning</strong>, and <strong>supply chain optimization</strong>.
+        </p>
+      </div>
+    </section>
 
-  <div class="container">
-    <h2>Education</h2>
-    <ul>
-      <li><strong>National University of Singapore (NUS)</strong>  
-        <br>Ph.D. in Industrial Systems Engineering and Management  
-        <br>2025.08 – Present  
-        <br>Supervisor: Prof. WANG Tong
-      </li>
-      <li><strong>The Hong Kong University of Science and Technology (HKUST)</strong>  
-        <br>M.Sc. in Data-Driven Modeling  
-        <br>2024.09 – 2025.07  
-        <br>GPA: 3.96 / 4.3  
-        <br>Relevant Courses: Statistical Machine Learning (A+), Numerical Methods and Modeling (A+), Quantitative Time Series Analysis (A+)
-      </li>
-      <li><strong>Wuhan University (WHU)</strong>  
-        <br>B.Sc. in Mathematics and Applied Mathematics  
-        <br>2019.09 – 2023.06  
-        <br>Honors: Outstanding Graduate (Top 10%), Multiple Scholarships
-      </li>
-    </ul>
-  </div>
+    <!-- Education Section -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-period">2025.08 – Present</div>
+          <div class="timeline-title">Ph.D. in Industrial Systems Engineering and Management</div>
+          <div class="timeline-subtitle">National University of Singapore (NUS)</div>
+          <div class="timeline-details">Supervisor: Prof. WANG Tong</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2024.09 – 2025.07</div>
+          <div class="timeline-title">M.Sc. in Data-Driven Modeling</div>
+          <div class="timeline-subtitle">The Hong Kong University of Science and Technology (HKUST)</div>
+          <div class="timeline-details">GPA: 3.96 / 4.3 | Relevant Courses: Statistical Machine Learning (A+), Numerical Methods and Modeling (A+), Quantitative Time Series Analysis (A+)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2019.09 – 2023.06</div>
+          <div class="timeline-title">B.Sc. in Mathematics and Applied Mathematics</div>
+          <div class="timeline-subtitle">Wuhan University (WHU)</div>
+          <div class="timeline-details">Honors: Outstanding Graduate (Top 10%), Multiple Scholarships</div>
+        </div>
+      </div>
+    </section>
 
-  <div class="container">
-    <h2>Professional Experience</h2>
-    <ul>
-      <li><strong>Research Assistant</strong>  
-        <br>Department of Industrial Engineering and Decision Analytics, HKUST  
-        <br>2024.09 – 2025.07  
-        <br>Supervisor: Prof. ZHAN Ruohan
-      </li>
-      <li><strong>Research Data Scientist Intern</strong>  
-        <br>Weixin Group, Tencent  
-        <br>2024.09 – 2025.07  
-        <br>Researched user retention under recommendation interference using data science and causal methods.
-      </li>
-      <li><strong>Software Engineer</strong>  
-        <br>Shenzhen Institute of Computing Sciences  
-        <br>2023.07 – 2024.08  
-        <br>Built database APIs and performance tools for SQL-based systems.
-      </li>
-    </ul>
-  </div>
+    <!-- Research Interests Section -->
+    <section id="research">
+      <h2>Research Interests</h2>
+      <div class="research-grid">
+        <div class="research-card">
+          <h3>Data-Driven Decision Making</h3>
+          <p>Developing statistical and machine learning methods to extract actionable insights from complex data for better organizational decisions.</p>
+        </div>
+        <div class="research-card">
+          <h3>Reinforcement Learning</h3>
+          <p>Designing algorithms that learn optimal policies through interaction with environments, with applications in operations management.</p>
+        </div>
+        <div class="research-card">
+          <h3>Supply Chain Optimization</h3>
+          <p>Building models to improve inventory management, logistics, and distribution networks under uncertainty.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- 下载按钮置于页面底部 -->
-  <div class="cv-button-container">
-    <a href="cv/Liangjie_Liu_CV.pdf" download class="cv-button">📄 Download CV (PDF)</a>
-  </div>
+    <!-- Professional Experience Section -->
+    <section id="experience">
+      <h2>Professional Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-period">2024.09 – 2025.07</div>
+          <div class="timeline-title">Research Assistant</div>
+          <div class="timeline-subtitle">Department of Industrial Engineering and Decision Analytics, HKUST</div>
+          <div class="timeline-details">Supervisor: Prof. ZHAN Ruohan</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2024.09 – 2025.07</div>
+          <div class="timeline-title">Research Data Scientist Intern</div>
+          <div class="timeline-subtitle">Weixin Group, Tencent</div>
+          <div class="timeline-details">Researched user retention under recommendation interference using data science and causal inference methods.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">2023.07 – 2024.08</div>
+          <div class="timeline-title">Software Engineer</div>
+          <div class="timeline-subtitle">Shenzhen Institute of Computing Sciences</div>
+          <div class="timeline-details">Built database APIs and performance tools for SQL-based systems.</div>
+        </div>
+      </div>
+    </section>
 
-  <div class="footer">
-    © 2025 Liangjie Liu | Contact: <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
-  </div>
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-category">
+        <h4>Programming Languages</h4>
+        <div class="skills-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <h4>Tools & Frameworks</h4>
+        <div class="skills-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">LaTeX</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <h4>Research Methods</h4>
+        <div class="skills-tags">
+          <span class="skill-tag">Reinforcement Learning</span>
+          <span class="skill-tag">Causal Inference</span>
+          <span class="skill-tag">Time Series Analysis</span>
+          <span class="skill-tag">Statistical Machine Learning</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- News & Updates Section -->
+    <section id="news">
+      <h2>News & Updates</h2>
+      <div class="news-item">
+        <div class="news-date">2025.08</div>
+        <div class="news-content">Started PhD program at NUS</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2025.07</div>
+        <div class="news-content">Completed MSc at HKUST with GPA 3.96</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2024.09</div>
+        <div class="news-content">Joined HKUST as Research Assistant and Tencent Intern</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">2023.06</div>
+        <div class="news-content">Graduated from Wuhan University with Honors</div>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <div class="publications-placeholder">
+        <p class="coming-soon">Coming Soon</p>
+        <p>Research papers will be listed here once available.</p>
+      </div>
+    </section>
+
+    <!-- CV Download Section -->
+    <div class="cv-section">
+      <a href="cv/Liangjie_Liu_CV.pdf" download class="cv-button">Download CV (PDF)</a>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-info">
+            <h4>Email</h4>
+            <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🏛️</div>
+          <div class="contact-info">
+            <h4>Institution</h4>
+            <p>NUS, ISEM</p>
+          </div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link" title="GitHub">GitHub</a>
+        <a href="#" class="social-link" title="LinkedIn">LinkedIn</a>
+        <a href="#" class="social-link" title="Google Scholar">Google Scholar</a>
+        <a href="#" class="social-link" title="Scholar">Scholar</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Liangjie Liu</p>
+    <p>Last updated: March 2025</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      const navMenu = document.getElementById('navMenu');
+      navMenu.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.navbar-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navMenu').classList.remove('active');
+      });
+    });
+
+    // Smooth scroll for navigation (fallback for older browsers)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
