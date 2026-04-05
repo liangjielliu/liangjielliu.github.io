@@ -120,6 +120,44 @@
       margin: 0.6rem 0 1rem;
     }
 
+    /* ─── Sidebar section navigation ─────────────────────────────── */
+    .sidebar-nav {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .sidebar-nav-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      padding-left: 0.1rem;
+    }
+    .sidebar-nav ul { width: 100%; }
+    .sidebar-nav li { }
+    .sidebar-nav a {
+      display: block;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      border-radius: 4px;
+      border-left: 3px solid transparent;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+    .sidebar-nav a:hover {
+      color: var(--link-color);
+      background: rgba(3, 102, 214, 0.06);
+      text-decoration: none;
+    }
+    .sidebar-nav a.active {
+      color: var(--link-color);
+      font-weight: 600;
+      border-left-color: var(--link-color);
+      background: rgba(3, 102, 214, 0.07);
+    }
+
     /* Social links */
     .author-social { width: 100%; }
     .author-social li { margin-bottom: 0.65rem; }
@@ -366,6 +404,7 @@
       .author-name { font-size: 1.05rem; }
 
       .sidebar-divider { display: none; }
+      .sidebar-nav { display: none; }  /* hide section nav on mobile */
 
       .author-social {
         flex-basis: 100%;
@@ -446,6 +485,21 @@
           </a>
         </li>
       </ul>
+
+      <hr class="sidebar-divider" style="margin-top:1.1rem;">
+
+      <!-- Section navigation -->
+      <nav class="sidebar-nav" aria-label="Page sections">
+        <div class="sidebar-nav-label">Sections</div>
+        <ul>
+          <li><a href="#about" class="nav-link active">About Me</a></li>
+          <li><a href="#news" class="nav-link">News</a></li>
+          <li><a href="#publications" class="nav-link">Publications</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#honors" class="nav-link">Honors &amp; Awards</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+        </ul>
+      </nav>
 
     </div>
   </aside>
@@ -628,7 +682,7 @@
 </footer>
 
 <script>
-  // Smooth scroll for anchor links (fallback for older browsers)
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -638,6 +692,42 @@
       }
     });
   });
+
+  // Sidebar nav: highlight active section on scroll via IntersectionObserver
+  const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+  const sections = document.querySelectorAll('main section[id]');
+
+  // Map section id → nav link
+  const linkMap = {};
+  navLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    linkMap[id] = a;
+  });
+
+  function setActive(id) {
+    navLinks.forEach(a => a.classList.remove('active'));
+    if (linkMap[id]) linkMap[id].classList.add('active');
+  }
+
+  // Use IntersectionObserver with a top margin so the section
+  // is considered "active" when it enters the upper third of the viewport.
+  const observer = new IntersectionObserver(entries => {
+    // Find the topmost visible section
+    let topEntry = null;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
+          topEntry = entry;
+        }
+      }
+    });
+    if (topEntry) setActive(topEntry.target.id);
+  }, {
+    rootMargin: '-10% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
