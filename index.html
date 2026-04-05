@@ -3,753 +3,641 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liangjie Liu - Academic Homepage</title>
+  <title>Liangjie Liu</title>
+  <meta name="description" content="Personal academic homepage of Liangjie Liu, PhD student at NUS ISEM. Research in data-driven decision making, reinforcement learning, and supply chain optimization.">
+  <meta property="og:title" content="Liangjie Liu">
+  <meta property="og:description" content="PhD Student, NUS ISEM. Data-driven decision making, reinforcement learning, supply chain optimization.">
+  <meta property="og:image" content="images/profile.jpg">
+
+  <!-- Google Fonts: Source Sans Pro (matches acad-homepage / Minimal Mistakes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 for social / contact icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    /* CSS Variables - Academic Blue Theme */
+    /* ─── Design tokens ─────────────────────────────────────────── */
     :root {
-      --primary: #1a365d;
-      --secondary: #2c5282;
-      --accent: #3182ce;
-      --bg-white: #ffffff;
-      --bg-light: #f7fafc;
-      --text-dark: #2d3748;
-      --text-muted: #4a5568;
-      --border-color: #e2e8f0;
+      --sidebar-width: 270px;
+      --sidebar-bg: #f8f9fa;
+      --body-bg: #ffffff;
+      --border: #dee2e6;
+      --text-primary: #292f36;
+      --text-muted: #6c757d;
+      --link-color: #0366d6;
+      --accent: #0366d6;
+      --font-body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-heading: Georgia, "Times New Roman", serif;
     }
 
-    /* Reset & Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.7;
+      font-family: var(--font-body);
+      background: var(--body-bg);
+      color: var(--text-primary);
+      line-height: 1.75;
     }
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
 
-    /* Navigation */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: var(--primary);
-      color: white;
-      padding: 15px 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .navbar-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
+    /* ─── Page wrapper: two-column flex ─────────────────────────── */
+    .page-wrapper {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;   /* required for position:sticky to work in flex */
+      min-height: 100vh;
     }
 
-    .navbar-brand {
-      font-family: Georgia, serif;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .navbar-nav {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-    }
-
-    .navbar-nav a {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      font-size: 15px;
-      transition: color 0.3s ease;
-    }
-
-    .navbar-nav a:hover {
-      color: white;
-    }
-
-    /* Mobile Menu Toggle */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* Main Content */
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 80px 20px 40px;
-    }
-
-    /* Section Styles */
-    section {
-      background: var(--bg-white);
-      border-radius: 8px;
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      transition: box-shadow 0.3s ease;
-    }
-
-    section:hover {
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      font-family: Georgia, serif;
-      color: var(--primary);
-      font-size: 24px;
-      margin-bottom: 25px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--border-color);
-    }
-
-    h3 {
-      font-family: Georgia, serif;
-      color: var(--secondary);
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      color: var(--text-muted);
-    }
-
-    /* Hero Section */
-    .hero {
-      display: flex;
-      gap: 40px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .hero-photo {
+    /* ─── Sidebar ────────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-width);
       flex-shrink: 0;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      min-height: 100vh;
     }
 
-    .hero-photo img {
-      width: 200px;
-      height: 200px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-      object-fit: cover;
-    }
-
-    .hero-content {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .hero-content h1 {
-      font-family: Georgia, serif;
-      color: var(--primary);
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .hero-content .title {
-      color: var(--secondary);
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .hero-content p {
-      font-size: 16px;
-    }
-
-    /* Timeline Styles */
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
+    .sidebar-inner {
+      position: sticky;
       top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--border-color);
-      border-radius: 3px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -34px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      border: 3px solid var(--bg-white);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-period {
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 5px;
-    }
-
-    .timeline-title {
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .timeline-subtitle {
-      color: var(--secondary);
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-
-    .timeline-details {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Skills Tags */
-    .skills-category {
-      margin-bottom: 20px;
-    }
-
-    .skills-category:last-child {
-      margin-bottom: 0;
-    }
-
-    .skills-category h4 {
-      color: var(--secondary);
-      font-size: 15px;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .skills-tags {
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      scrollbar-width: none;   /* Firefox: hide scrollbar */
+    }
+    .sidebar-inner::-webkit-scrollbar { display: none; }
+
+    /* Avatar */
+    .author-avatar {
+      width: 160px;
+      height: 160px;
+      margin-bottom: 1.1rem;
+    }
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 4px solid #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
 
-    .skill-tag {
-      background: var(--bg-light);
-      color: var(--text-dark);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 14px;
-      border: 1px solid var(--border-color);
+    /* Name & affiliation */
+    .author-name {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .author-bio {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+    .author-affiliation {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 1rem;
     }
 
-    /* News Items */
+    /* Divider */
+    .sidebar-divider {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.6rem 0 1rem;
+    }
+
+    /* Social links */
+    .author-social { width: 100%; }
+    .author-social li { margin-bottom: 0.65rem; }
+    .author-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+      text-align: left;
+      word-break: break-all;
+    }
+    .author-social a:hover {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    .author-social i {
+      width: 1.1em;
+      text-align: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    .author-social a:hover i { color: var(--link-color); }
+
+    /* ─── Main content ───────────────────────────────────────────── */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      padding: 2.5rem 3rem 5rem;
+      max-width: 820px;
+    }
+
+    .main-content section {
+      margin-bottom: 2.75rem;
+    }
+
+    .main-content h2 {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .main-content p {
+      margin-bottom: 0.85rem;
+      font-size: 1rem;
+    }
+    .main-content p:last-child { margin-bottom: 0; }
+
+    /* ─── About: research interests list ─────────────────────────── */
+    .research-list {
+      padding-left: 1.2rem;
+      list-style: disc;
+      margin-top: 0.5rem;
+    }
+    .research-list li {
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    /* ─── News ───────────────────────────────────────────────────── */
+    .news-list { }
     .news-item {
       display: flex;
-      gap: 15px;
-      margin-bottom: 15px;
-      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      align-items: baseline;
     }
-
-    .news-item:last-child {
-      margin-bottom: 0;
-    }
-
+    .news-item:last-child { border-bottom: none; }
     .news-date {
       flex-shrink: 0;
-      width: 70px;
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .news-content {
+      min-width: 82px;
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--text-muted);
     }
+    .news-text { color: var(--text-primary); }
 
-    /* Research Interests */
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    /* ─── Publications ───────────────────────────────────────────── */
+    .paper-box {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
     }
-
-    .research-card {
-      background: var(--bg-light);
-      padding: 25px;
-      border-radius: 8px;
-      border-left: 4px solid var(--accent);
+    .paper-box:last-child { border-bottom: none; }
+    .paper-box-image {
+      flex: 0 0 38%;
+      max-width: 240px;
     }
-
-    .research-card h3 {
-      margin-bottom: 10px;
+    .paper-box-image img {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
     }
-
-    .research-card p {
-      font-size: 14px;
-      margin-bottom: 0;
+    .paper-box-text { flex: 1; }
+    .paper-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-primary);
     }
-
-    /* Publications */
-    .publications-placeholder {
-      text-align: center;
-      padding: 40px;
+    .paper-authors {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      background: var(--bg-light);
-      border-radius: 8px;
+      margin-bottom: 0.3rem;
     }
-
-    .publications-placeholder .coming-soon {
-      font-size: 18px;
-      color: var(--secondary);
-      margin-bottom: 10px;
-    }
-
-    /* Contact Section */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .contact-icon {
-      width: 45px;
-      height: 45px;
-      background: var(--bg-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .contact-info h4 {
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin-bottom: 3px;
-    }
-
-    .contact-info a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    /* Social Links */
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 25px;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    .social-link:hover {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    /* CV Button */
-    .cv-section {
-      text-align: center;
-      padding: 30px;
-      background: var(--bg-white);
-      border-radius: 8px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .cv-button {
+    .paper-venue { margin-bottom: 0.4rem; }
+    .badge {
       display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 12px 30px;
-      font-size: 15px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      padding: 0.15em 0.55em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 3px;
+      line-height: 1.4;
+    }
+    .badge-venue {
+      background: #e3f2fd;
+      color: #1565c0;
+      border: 1px solid #90caf9;
+    }
+    .paper-abstract {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .paper-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+    .coming-soon-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
     }
 
-    .cv-button:hover {
-      background: var(--secondary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+    /* ─── Education & Experience (shared row style) ──────────────── */
+    .edu-list { }
+    .edu-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-meta {
+      flex-shrink: 0;
+      min-width: 160px;
+    }
+    .edu-period {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .edu-degree {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+      font-size: 0.95rem;
+    }
+    .edu-school {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.1rem;
+    }
+    .edu-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
-    /* Footer */
+    /* ─── Honors ─────────────────────────────────────────────────── */
+    .honors-list li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      align-items: baseline;
+    }
+    .honors-list li:last-child { border-bottom: none; }
+    .honor-year {
+      flex-shrink: 0;
+      min-width: 80px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
     footer {
-      background: var(--primary);
-      color: white;
+      background: var(--sidebar-bg);
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 30px 20px;
-      margin-top: 40px;
+      padding: 1.25rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
     }
 
-    footer p {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: underline;
-    }
-
-    /* Responsive Design */
+    /* ─── Mobile (≤768px): sidebar collapses to top header ──────── */
     @media (max-width: 768px) {
-      .navbar-nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--primary);
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        text-align: center;
+      .page-wrapper { flex-direction: column; }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
       }
 
-      .navbar-nav.active {
+      .sidebar-inner {
+        position: static;
+        max-height: none;
+        padding: 1.25rem 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        text-align: left;
+        gap: 0.75rem 1rem;
+      }
+
+      .author-avatar {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+      }
+
+      .sidebar-text-group {
+        flex: 1;
+        min-width: 160px;
+      }
+
+      .author-name { font-size: 1.05rem; }
+
+      .sidebar-divider { display: none; }
+
+      .author-social {
+        flex-basis: 100%;
         display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem 1.25rem;
+        margin-top: 0.25rem;
+      }
+      .author-social li { margin-bottom: 0; }
+
+      .main-content {
+        padding: 1.5rem 1.25rem 3rem;
       }
 
-      .menu-toggle {
-        display: block;
-      }
+      .paper-box { flex-direction: column; }
+      .paper-box-image { max-width: 100%; flex-basis: auto; }
 
-      .hero {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .hero-photo img {
-        width: 160px;
-        height: 160px;
-      }
-
-      .hero-content h1 {
-        font-size: 26px;
-      }
-
-      section {
-        padding: 30px 20px;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Print Styles */
-    @media print {
-      .navbar, .cv-section, footer {
-        display: none;
-      }
-
-      main {
-        padding: 0;
-      }
-
-      section {
-        box-shadow: none;
-        border: 1px solid #ddd;
-        page-break-inside: avoid;
-      }
+      .edu-item { flex-direction: column; gap: 0.25rem; }
+      .edu-meta { min-width: auto; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-brand">Liangjie Liu</div>
-      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <ul class="navbar-nav" id="navMenu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+<div class="page-wrapper">
+
+  <!-- ═══════════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <!-- Profile photo -->
+      <div class="author-avatar">
+        <img src="images/profile.jpg" alt="Liangjie Liu">
+      </div>
+
+      <!-- Name & affiliation — wrapped for mobile flex layout -->
+      <div class="sidebar-text-group">
+        <h1 class="author-name">Liangjie Liu</h1>
+        <p class="author-bio">PhD Student</p>
+        <p class="author-affiliation">
+          Dept. of ISEM<br>
+          National University of Singapore
+        </p>
+      </div>
+
+      <hr class="sidebar-divider">
+
+      <!-- Social / contact links -->
+      <ul class="author-social">
+        <li>
+          <a href="mailto:liangjie_liu@outlook.com" title="Email">
+            <i class="fas fa-envelope"></i>
+            <span>liangjie_liu@outlook.com</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="Google Scholar" target="_blank" rel="noopener">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Google Scholar</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="GitHub" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="LinkedIn" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+        </li>
+        <li>
+          <a href="cv/Liangjie_Liu_CV.pdf" title="Curriculum Vitae" target="_blank" rel="noopener">
+            <i class="fas fa-file-alt"></i>
+            <span>Curriculum Vitae</span>
+          </a>
+        </li>
       </ul>
+
     </div>
-  </nav>
+  </aside>
 
-  <main>
-    <!-- Hero / About Section -->
-    <section id="about" class="hero">
-      <div class="hero-photo">
-        <img src="images/profile.jpg" alt="Liangjie Liu" />
-      </div>
-      <div class="hero-content">
-        <h1>Liangjie Liu</h1>
-        <p class="title">PhD Student, National University of Singapore</p>
-        <p>
-          I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM) at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025.
-        </p>
-        <p>
-          Prior to this, I completed my MSc in Data-Driven Modeling and worked as a Research Assistant at the Department of Industrial Engineering and Decision Analytics (IEDA) at <strong>HKUST</strong>.
-        </p>
-        <p>
-          My research interests focus on <strong>data-driven decision making</strong>, <strong>reinforcement learning</strong>, and <strong>supply chain optimization</strong>.
-        </p>
-      </div>
+  <!-- ════════════════════════════════ MAIN CONTENT ═════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- About Me -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a PhD student in the Department of Industrial Systems Engineering and Management (ISEM)
+        at the <strong>National University of Singapore (NUS)</strong>, starting from August 2025,
+        advised by Prof. WANG Tong.
+      </p>
+      <p>
+        Prior to this, I completed my MSc in Data-Driven Modeling at
+        <strong>HKUST</strong> (GPA 3.96/4.3) and worked as a Research Assistant
+        in the Department of Industrial Engineering and Decision Analytics (IEDA)
+        under Prof. ZHAN Ruohan.
+      </p>
+      <p>My research interests include:</p>
+      <ul class="research-list">
+        <li>Data-driven decision making</li>
+        <li>Reinforcement learning</li>
+        <li>Supply chain optimization</li>
+      </ul>
     </section>
 
-    <!-- Education Section -->
-    <section id="education">
-      <h2>Education</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-period">2025.08 – Present</div>
-          <div class="timeline-title">Ph.D. in Industrial Systems Engineering and Management</div>
-          <div class="timeline-subtitle">National University of Singapore (NUS)</div>
-          <div class="timeline-details">Supervisor: Prof. WANG Tong</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-period">2024.09 – 2025.07</div>
-          <div class="timeline-title">M.Sc. in Data-Driven Modeling</div>
-          <div class="timeline-subtitle">The Hong Kong University of Science and Technology (HKUST)</div>
-          <div class="timeline-details">GPA: 3.96 / 4.3 | Relevant Courses: Statistical Machine Learning (A+), Numerical Methods and Modeling (A+), Quantitative Time Series Analysis (A+)</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-period">2019.09 – 2023.06</div>
-          <div class="timeline-title">B.Sc. in Mathematics and Applied Mathematics</div>
-          <div class="timeline-subtitle">Wuhan University (WHU)</div>
-          <div class="timeline-details">Honors: Outstanding Graduate (Top 10%), Multiple Scholarships</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research Interests Section -->
-    <section id="research">
-      <h2>Research Interests</h2>
-      <div class="research-grid">
-        <div class="research-card">
-          <h3>Data-Driven Decision Making</h3>
-          <p>Developing statistical and machine learning methods to extract actionable insights from complex data for better organizational decisions.</p>
-        </div>
-        <div class="research-card">
-          <h3>Reinforcement Learning</h3>
-          <p>Designing algorithms that learn optimal policies through interaction with environments, with applications in operations management.</p>
-        </div>
-        <div class="research-card">
-          <h3>Supply Chain Optimization</h3>
-          <p>Building models to improve inventory management, logistics, and distribution networks under uncertainty.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Professional Experience Section -->
-    <section id="experience">
-      <h2>Professional Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-period">2024.09 – 2025.07</div>
-          <div class="timeline-title">Research Assistant</div>
-          <div class="timeline-subtitle">Department of Industrial Engineering and Decision Analytics, HKUST</div>
-          <div class="timeline-details">Supervisor: Prof. ZHAN Ruohan</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-period">2024.09 – 2025.07</div>
-          <div class="timeline-title">Research Data Scientist Intern</div>
-          <div class="timeline-subtitle">Weixin Group, Tencent</div>
-          <div class="timeline-details">Researched user retention under recommendation interference using data science and causal inference methods.</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-period">2023.07 – 2024.08</div>
-          <div class="timeline-title">Software Engineer</div>
-          <div class="timeline-subtitle">Shenzhen Institute of Computing Sciences</div>
-          <div class="timeline-details">Built database APIs and performance tools for SQL-based systems.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="skills-category">
-        <h4>Programming Languages</h4>
-        <div class="skills-tags">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">C++</span>
-          <span class="skill-tag">SQL</span>
-        </div>
-      </div>
-      <div class="skills-category">
-        <h4>Tools & Frameworks</h4>
-        <div class="skills-tags">
-          <span class="skill-tag">TensorFlow</span>
-          <span class="skill-tag">PyTorch</span>
-          <span class="skill-tag">LaTeX</span>
-          <span class="skill-tag">Git</span>
-        </div>
-      </div>
-      <div class="skills-category">
-        <h4>Research Methods</h4>
-        <div class="skills-tags">
-          <span class="skill-tag">Reinforcement Learning</span>
-          <span class="skill-tag">Causal Inference</span>
-          <span class="skill-tag">Time Series Analysis</span>
-          <span class="skill-tag">Statistical Machine Learning</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- News & Updates Section -->
+    <!-- News -->
     <section id="news">
-      <h2>News & Updates</h2>
-      <div class="news-item">
-        <div class="news-date">2025.08</div>
-        <div class="news-content">Started PhD program at NUS</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">2025.07</div>
-        <div class="news-content">Completed MSc at HKUST with GPA 3.96</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">2024.09</div>
-        <div class="news-content">Joined HKUST as Research Assistant and Tencent Intern</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">2023.06</div>
-        <div class="news-content">Graduated from Wuhan University with Honors</div>
-      </div>
+      <h2>News</h2>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">Aug. 2025</span>
+          <span class="news-text">Started PhD program at NUS ISEM.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Jul. 2025</span>
+          <span class="news-text">Completed MSc at HKUST with GPA 3.96/4.3.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Sep. 2024</span>
+          <span class="news-text">Joined HKUST IEDA as Research Assistant under Prof. ZHAN Ruohan, and Tencent Weixin Group as Research Data Scientist Intern.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Jun. 2023</span>
+          <span class="news-text">Graduated from Wuhan University with honors (Outstanding Graduate, Top 10%).</span>
+        </li>
+      </ul>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications -->
     <section id="publications">
       <h2>Publications</h2>
-      <div class="publications-placeholder">
-        <p class="coming-soon">Coming Soon</p>
-        <p>Research papers will be listed here once available.</p>
-      </div>
-    </section>
 
-    <!-- CV Download Section -->
-    <div class="cv-section">
-      <a href="cv/Liangjie_Liu_CV.pdf" download class="cv-button">Download CV (PDF)</a>
-    </div>
+      <!--
+        Paper-box template — uncomment and fill in when a paper is ready:
 
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-info">
-            <h4>Email</h4>
-            <a href="mailto:liangjie_liu@outlook.com">liangjie_liu@outlook.com</a>
+        <div class="paper-box">
+          <div class="paper-box-image">
+            <img src="images/paper1.png" alt="Paper thumbnail">
+          </div>
+          <div class="paper-box-text">
+            <div class="paper-title">Title of the Paper</div>
+            <div class="paper-authors"><strong>Liangjie Liu</strong>, Co-Author A, Co-Author B</div>
+            <div class="paper-venue">
+              <span class="badge badge-venue">NeurIPS 2025</span>
+            </div>
+            <div class="paper-abstract">
+              A one-sentence summary of the paper's contribution.
+            </div>
+            <div class="paper-links">
+              <a href="#">[Paper]</a>
+              <a href="#">[Code]</a>
+              <a href="#">[Slides]</a>
+            </div>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">🏛️</div>
-          <div class="contact-info">
-            <h4>Institution</h4>
-            <p>NUS, ISEM</p>
-          </div>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="#" class="social-link" title="GitHub">GitHub</a>
-        <a href="#" class="social-link" title="LinkedIn">LinkedIn</a>
-        <a href="#" class="social-link" title="Google Scholar">Google Scholar</a>
-        <a href="#" class="social-link" title="Scholar">Scholar</a>
-      </div>
+      -->
+
+      <p class="coming-soon-text">Research papers will be listed here once available.</p>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Liangjie Liu</p>
-    <p>Last updated: March 2025</p>
-  </footer>
+    <!-- Education -->
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Aug. 2025 – Present</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">Ph.D. in Industrial Systems Engineering and Management</div>
+            <div class="edu-school">National University of Singapore (NUS)</div>
+            <div class="edu-detail">Supervisor: Prof. WANG Tong</div>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Sep. 2024 – Jul. 2025</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">M.Sc. in Data-Driven Modeling</div>
+            <div class="edu-school">Hong Kong University of Science and Technology (HKUST)</div>
+            <div class="edu-detail">GPA: 3.96 / 4.3 &nbsp;·&nbsp; Statistical Machine Learning (A+), Numerical Methods (A+), Time Series Analysis (A+)</div>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Sep. 2019 – Jun. 2023</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">B.Sc. in Mathematics and Applied Mathematics</div>
+            <div class="edu-school">Wuhan University (WHU)</div>
+            <div class="edu-detail">Outstanding Graduate (Top 10%) · Multiple Academic Scholarships</div>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-  <script>
-    // Mobile menu toggle
-    function toggleMenu() {
-      const navMenu = document.getElementById('navMenu');
-      navMenu.classList.toggle('active');
-    }
+    <!-- Honors & Awards -->
+    <section id="honors">
+      <h2>Honors &amp; Awards</h2>
+      <ul class="honors-list">
+        <li>
+          <span class="honor-year">2023</span>
+          <span>Outstanding Graduate, Wuhan University (Top 10%)</span>
+        </li>
+        <li>
+          <span class="honor-year">2019–2023</span>
+          <span>Academic Excellence Scholarships, Wuhan University</span>
+        </li>
+      </ul>
+    </section>
 
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.navbar-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navMenu').classList.remove('active');
-      });
-    });
+    <!-- Experience -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Sep. 2024 – Jul. 2025</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">Research Assistant</div>
+            <div class="edu-school">Dept. of IEDA, HKUST</div>
+            <div class="edu-detail">Supervisor: Prof. ZHAN Ruohan</div>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Sep. 2024 – Jul. 2025</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">Research Data Scientist Intern</div>
+            <div class="edu-school">Weixin Group, Tencent</div>
+            <div class="edu-detail">User retention research under recommendation interference using causal inference.</div>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-meta">
+            <span class="edu-period">Jul. 2023 – Aug. 2024</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-degree">Software Engineer</div>
+            <div class="edu-school">Shenzhen Institute of Computing Sciences</div>
+            <div class="edu-detail">Built database APIs and performance tooling for SQL-based systems.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-    // Smooth scroll for navigation (fallback for older browsers)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+  </main><!-- /.main-content -->
+
+</div><!-- /.page-wrapper -->
+
+<footer>
+  <p>&copy; 2025 Liangjie Liu &nbsp;·&nbsp; Last updated: April 2026</p>
+</footer>
+
+<script>
+  // Smooth scroll for anchor links (fallback for older browsers)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
