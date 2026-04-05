@@ -53,12 +53,13 @@
       top: 0; left: 0; right: 0;
       height: var(--masthead-height);
       background: var(--masthead-bg);
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
       align-items: center;
-      justify-content: space-between;
       padding: 0 1.5rem 0 1.5rem;
       z-index: 200;
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      column-gap: 1.2rem;
     }
     .masthead-title {
       color: #fff;
@@ -75,8 +76,11 @@
     .masthead-nav {
       display: flex;
       align-items: center;
-      gap: 0.15rem;
-      margin-left: 1rem;
+      justify-content: space-evenly;
+      gap: 0.4rem;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
     }
     .masthead-nav a {
       color: rgba(255,255,255,0.75);
@@ -362,6 +366,7 @@
         gap: 0;
         z-index: 190;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        max-width: none;
       }
       .masthead-nav.open a {
         padding: 0.55rem 0.5rem;
@@ -474,7 +479,7 @@
       <li>
         <a href="https://github.com/liangjielliu" title="GitHub" target="_blank" rel="noopener">
           <i class="fab fa-github"></i>
-          <span>github.com/liangjielliu</span>
+          <span>GitHub</span>
         </a>
       </li>
       <li>
