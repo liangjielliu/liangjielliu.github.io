@@ -12,7 +12,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,15 +20,22 @@
   <style>
     /* ─── Design tokens ─────────────────────────────────────────── */
     :root {
-      --sidebar-width: 220px;
-      --masthead-height: 56px;
-      --masthead-bg: #252a2e;
-      --body-bg: #fff;
-      --border: #f2f3f3;
-      --border-section: #e9eaeb;
-      --text-primary: #494e52;
-      --text-muted: #898c8f;
-      --link-color: #0366d6;
+      --sidebar-width: 248px;
+      --masthead-height: 60px;
+      --masthead-bg: rgba(38, 41, 46, 0.92);
+      --body-bg: #fbfaf7;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: #ffffff;
+      --sidebar-bg: linear-gradient(180deg, #f7f3eb 0%, #fcfbf8 24%, #ffffff 100%);
+      --border: #ece6db;
+      --border-section: #ddd4c4;
+      --text-primary: #3f454c;
+      --text-muted: #70767d;
+      --link-color: #0d607e;
+      --link-hover: #084861;
+      --accent-soft: rgba(13, 96, 126, 0.08);
+      --shadow-soft: 0 18px 45px rgba(54, 62, 72, 0.06);
+      --shadow-card: 0 10px 24px rgba(54, 62, 72, 0.06);
       --font-body: "Source Sans 3", "Trebuchet MS", Helvetica, sans-serif;
       --font-heading: Georgia, "Times New Roman", serif;
     }
@@ -39,11 +46,14 @@
     body {
       font-family: var(--font-body);
       background: var(--body-bg);
+      background-image:
+        radial-gradient(circle at top left, rgba(184, 154, 90, 0.08), transparent 28%),
+        linear-gradient(180deg, #f7f4ee 0%, #fbfaf7 18%, #fbfaf7 100%);
       color: var(--text-primary);
       line-height: 1.65;
     }
     a { color: var(--link-color); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
     ul { list-style: none; }
     img { display: block; max-width: 100%; }
 
@@ -58,14 +68,16 @@
       justify-content: space-between;
       padding: 0 1.5rem 0 1.5rem;
       z-index: 200;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 28px rgba(22, 25, 29, 0.16);
+      backdrop-filter: blur(12px);
     }
     .masthead-title {
       color: #fff;
       font-family: var(--font-heading);
       font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
       opacity: 0.9;
       white-space: nowrap;
     }
@@ -81,19 +93,22 @@
     .masthead-nav a {
       color: rgba(255,255,255,0.75);
       font-size: 0.82rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 3px;
-      transition: all 0.15s;
+      padding: 0.34rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
       white-space: nowrap;
     }
     .masthead-nav a:hover {
       color: #fff;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.08);
       text-decoration: none;
     }
     .masthead-nav a.active {
       color: #fff;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.12);
     }
 
     /* Hamburger for mobile */
@@ -116,8 +131,8 @@
       width: var(--sidebar-width);
       height: calc(100vh - var(--masthead-height));
       overflow-y: auto;
-      background: var(--body-bg);
-      border-right: 1px solid var(--border);
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-section);
       z-index: 100;
       scrollbar-width: none;
     }
@@ -129,13 +144,14 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      min-height: 100%;
     }
 
     /* Avatar */
     .author-avatar {
-      width: 130px;
-      height: 130px;
-      margin-bottom: 1rem;
+      width: 136px;
+      height: 136px;
+      margin-bottom: 1.05rem;
     }
     .author-avatar img {
       width: 100%;
@@ -143,27 +159,29 @@
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      border: 4px solid rgba(255,255,255,0.9);
+      box-shadow: 0 14px 28px rgba(41, 48, 57, 0.14);
     }
 
     /* Name & affiliation */
     .author-name {
       font-family: var(--font-body);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.015em;
     }
     .author-bio {
-      font-size: 0.875rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
     }
     .author-affiliation {
-      font-size: 0.8rem;
+      font-size: 0.83rem;
       color: var(--text-muted);
       line-height: 1.5;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
     }
 
     /* Divider */
@@ -183,12 +201,16 @@
       gap: 0.55rem;
       font-size: 0.825rem;
       color: var(--text-muted);
-      transition: color 0.15s;
+      transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
       text-align: left;
       overflow: hidden;
+      padding: 0.28rem 0.45rem;
+      border-radius: 10px;
     }
     .author-social a:hover {
       color: var(--link-color);
+      background: rgba(255,255,255,0.7);
+      transform: translateX(2px);
       text-decoration: none;
     }
     .author-social i {
@@ -208,51 +230,59 @@
     .sidebar-nav-label {
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
       padding-left: 0.5rem;
     }
     .sidebar-nav a {
       display: block;
-      padding: 0.28rem 0.5rem;
+      padding: 0.38rem 0.6rem;
       font-size: 0.825rem;
       color: var(--text-muted);
-      border-radius: 3px;
+      border-radius: 10px;
       border-left: 2px solid transparent;
       transition: all 0.15s ease;
       text-align: left;
     }
     .sidebar-nav a:hover {
       color: var(--link-color);
-      background: rgba(3, 102, 214, 0.05);
+      background: var(--accent-soft);
       text-decoration: none;
     }
     .sidebar-nav a.active {
       color: var(--link-color);
       font-weight: 600;
       border-left-color: var(--link-color);
-      background: rgba(3, 102, 214, 0.06);
+      background: var(--accent-soft);
     }
 
     /* ─── Main content ───────────────────────────────────────────── */
     .main-content {
-      margin-left: var(--sidebar-width);
-      padding: calc(var(--masthead-height) + 2.25rem) 3rem 5rem 2.5rem;
-      max-width: 860px;
+      margin: 0 auto;
+      padding: calc(var(--masthead-height) + 2.2rem) 3rem 5rem 2.7rem;
+      max-width: 920px;
     }
 
-    .main-content section { margin-bottom: 2.5rem; }
+    .main-content section {
+      margin-bottom: 1.8rem;
+      padding: 1.6rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid rgba(221, 212, 196, 0.72);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px);
+    }
 
     .main-content h2 {
       font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.42rem;
       font-weight: 700;
       color: var(--text-primary);
-      padding-bottom: 0.35rem;
+      padding-bottom: 0.45rem;
       border-bottom: 1px solid var(--border-section);
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.15rem;
     }
 
     .main-content p {
@@ -261,26 +291,105 @@
       color: var(--text-primary);
     }
     .main-content p:last-child { margin-bottom: 0; }
+    #about p:first-of-type {
+      font-size: 1.06rem;
+      line-height: 1.8;
+    }
+
+    .main-content section.profile-hero {
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+    .profile-hero-card {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+      padding: 1.75rem 1.8rem;
+      background: linear-gradient(135deg, rgba(247, 243, 235, 0.96) 0%, rgba(255, 255, 255, 0.94) 72%);
+      border: 1px solid rgba(221, 212, 196, 0.88);
+      border-radius: 24px;
+      box-shadow: 0 22px 44px rgba(54, 62, 72, 0.08);
+    }
+    .profile-hero .author-avatar {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .profile-hero-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .profile-hero .author-name {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      margin-bottom: 0.3rem;
+    }
+    .profile-hero .author-bio {
+      font-size: 0.98rem;
+      margin-bottom: 0.15rem;
+    }
+    .profile-hero .author-affiliation {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+    .profile-hero-note {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      max-width: 42rem;
+    }
+    .profile-hero .author-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 0.7rem;
+      margin-top: 1rem;
+    }
+    .profile-hero .author-social li { margin-bottom: 0; }
+    .profile-hero .author-social a {
+      padding: 0.45rem 0.72rem;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(13, 96, 126, 0.12);
+    }
 
     /* Research interests list in About */
     .research-list {
-      padding-left: 1.2rem;
-      list-style: disc;
-      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      padding-left: 0;
+      list-style: none;
+      margin-top: 0.65rem;
       color: var(--text-primary);
     }
-    .research-list li { margin-bottom: 0.25rem; font-size: 1rem; }
+    .research-list li {
+      margin-bottom: 0;
+      font-size: 0.94rem;
+      padding: 0.38rem 0.78rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(13, 96, 126, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
 
     /* ─── News ───────────────────────────────────────────────────── */
     .news-item {
       display: flex;
       gap: 1rem;
-      padding: 0.5rem 0;
+      padding: 0.72rem 0.9rem;
+      margin: 0 -0.9rem;
       border-bottom: 1px solid var(--border);
       font-size: 0.95rem;
       align-items: baseline;
+      border-radius: 12px;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
     .news-item:last-child { border-bottom: none; }
+    .news-item:hover {
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
     .news-date {
       flex-shrink: 0;
       min-width: 78px;
@@ -294,16 +403,24 @@
     .paper-box {
       display: flex;
       gap: 1.5rem;
-      padding: 1rem 0;
+      padding: 1rem 1rem;
+      margin: 0 -1rem;
       border-bottom: 1px solid var(--border);
       align-items: flex-start;
+      border-radius: 14px;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
     .paper-box:last-child { border-bottom: none; }
+    .paper-box:hover {
+      background: rgba(255,255,255,0.74);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
     .paper-box-image { flex: 0 0 38%; max-width: 230px; }
     .paper-box-image img {
       width: 100%;
       border: 1px solid var(--border-section);
-      border-radius: 3px;
+      border-radius: 10px;
     }
     .paper-box-text { flex: 1; }
     .paper-title {
@@ -320,30 +437,46 @@
     .paper-venue { margin-bottom: 0.4rem; }
     .badge {
       display: inline-block;
-      padding: 0.12em 0.5em;
+      padding: 0.18em 0.58em;
       font-size: 0.76rem;
       font-weight: 700;
-      border-radius: 3px;
+      border-radius: 999px;
       line-height: 1.4;
     }
     .badge-venue {
-      background: #e8f0fe;
-      color: #1a56db;
-      border: 1px solid #c3d3fb;
+      background: rgba(13, 96, 126, 0.1);
+      color: var(--link-color);
+      border: 1px solid rgba(13, 96, 126, 0.14);
     }
     .paper-abstract { font-size: 0.865rem; color: var(--text-muted); margin-bottom: 0.45rem; }
     .paper-links a { font-size: 0.875rem; font-weight: 600; margin-right: 0.7rem; }
-    .coming-soon-text { font-size: 0.95rem; color: var(--text-muted); font-style: italic; }
+    .coming-soon-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 0.95rem 1rem;
+      background: rgba(247, 243, 235, 0.72);
+      border: 1px dashed var(--border-section);
+      border-radius: 12px;
+    }
 
     /* ─── Education & Experience rows ────────────────────────────── */
     .edu-item {
       display: flex;
       gap: 1.25rem;
-      padding: 0.8rem 0;
+      padding: 0.82rem 0.9rem;
+      margin: 0 -0.9rem;
       border-bottom: 1px solid var(--border);
       align-items: flex-start;
+      border-radius: 12px;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
     .edu-item:last-child { border-bottom: none; }
+    .edu-item:hover {
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
     .edu-meta { flex-shrink: 0; min-width: 150px; }
     .edu-period { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
     .edu-degree { font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; font-size: 0.95rem; }
@@ -354,12 +487,20 @@
     .honors-list li {
       display: flex;
       gap: 1rem;
-      padding: 0.5rem 0;
+      padding: 0.72rem 0.9rem;
+      margin: 0 -0.9rem;
       border-bottom: 1px solid var(--border);
       font-size: 0.95rem;
       align-items: baseline;
+      border-radius: 12px;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
     .honors-list li:last-child { border-bottom: none; }
+    .honors-list li:hover {
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
     .honor-year {
       flex-shrink: 0;
       min-width: 75px;
@@ -370,9 +511,9 @@
 
     /* ─── Footer ─────────────────────────────────────────────────── */
     footer {
-      margin-left: var(--sidebar-width);
-      background: var(--body-bg);
-      border-top: 1px solid var(--border-section);
+      margin-left: 0;
+      background: transparent;
+      border-top: 1px solid rgba(221, 212, 196, 0.8);
       text-align: center;
       padding: 1.25rem 1rem;
       font-size: 0.8rem;
@@ -393,59 +534,44 @@
         padding: 0.5rem 1rem 1rem;
         gap: 0;
         z-index: 190;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.18);
       }
       .masthead-nav.open a {
         padding: 0.55rem 0.5rem;
+        border-radius: 0;
+        border: none;
         border-bottom: 1px solid rgba(255,255,255,0.08);
         font-size: 0.9rem;
       }
       .masthead-toggle { display: block; }
 
-      .sidebar {
-        position: static;
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border-section);
-        margin-top: var(--masthead-height);
-      }
-
-      .sidebar-inner {
-        padding: 1.1rem 1rem;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        text-align: left;
-        gap: 0.5rem 1rem;
-      }
-
-      .author-avatar {
-        width: 72px;
-        height: 72px;
-        margin-bottom: 0;
-        flex-shrink: 0;
-      }
-
-      .sidebar-text-group { flex: 1; min-width: 160px; }
-
-      .author-name { font-size: 1rem; }
-      .sidebar-divider { display: none; }
-
-      .author-social {
-        flex-basis: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.2rem 1.1rem;
-        margin-top: 0.2rem;
-      }
-      .author-social li { margin-bottom: 0; }
-
-      .sidebar-nav { display: none; }
-
       .main-content {
-        margin-left: 0;
         padding: 1.5rem 1.25rem 3rem;
+      }
+
+      .main-content section {
+        padding: 1.25rem 1.15rem;
+        border-radius: 14px;
+      }
+
+      .profile-hero-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.35rem 1.2rem;
+        border-radius: 18px;
+      }
+
+      .profile-hero .author-avatar {
+        width: 84px;
+        height: 84px;
+      }
+
+      .profile-hero .author-name {
+        font-size: 1.4rem;
+      }
+
+      .profile-hero .author-social {
+        width: 100%;
       }
 
       footer { margin-left: 0; }
@@ -473,77 +599,61 @@
   <button class="masthead-toggle" id="mastheadToggle" aria-label="Toggle navigation">&#9776;</button>
 </header>
 
-<!-- ═══════════════════════════════════ SIDEBAR ═══════════════════════════════ -->
-<aside class="sidebar">
-  <div class="sidebar-inner">
-
-    <div class="author-avatar">
-      <img src="images/profile.jpg" alt="Liangjie Liu">
-    </div>
-
-    <div class="sidebar-text-group">
-      <div class="author-name">Liangjie Liu</div>
-      <div class="author-bio">PhD Student</div>
-      <div class="author-affiliation">
-        Dept. of ISEM<br>
-        National University of Singapore
-      </div>
-    </div>
-
-    <hr class="sidebar-divider">
-
-    <ul class="author-social">
-      <li>
-        <a href="mailto:liangjie_liu@outlook.com" title="Email">
-          <i class="fas fa-envelope"></i>
-          <span>liangjie_liu@outlook.com</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" title="Google Scholar" target="_blank" rel="noopener">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Google Scholar</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" title="GitHub" target="_blank" rel="noopener">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" title="LinkedIn" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin"></i>
-          <span>LinkedIn</span>
-        </a>
-      </li>
-      <li>
-        <a href="cv/Liangjie_Liu_CV.pdf" title="Curriculum Vitae" target="_blank" rel="noopener">
-          <i class="fas fa-file-alt"></i>
-          <span>Curriculum Vitae</span>
-        </a>
-      </li>
-    </ul>
-
-    <hr class="sidebar-divider" style="margin-top:0.9rem;">
-
-    <nav class="sidebar-nav" aria-label="Page sections">
-      <div class="sidebar-nav-label">Sections</div>
-      <ul>
-        <li><a href="#about"        class="nav-link active">About Me</a></li>
-        <li><a href="#news"         class="nav-link">News</a></li>
-        <li><a href="#publications" class="nav-link">Publications</a></li>
-        <li><a href="#education"    class="nav-link">Education</a></li>
-        <li><a href="#honors"       class="nav-link">Honors &amp; Awards</a></li>
-        <li><a href="#experience"   class="nav-link">Experience</a></li>
-      </ul>
-    </nav>
-
-  </div>
-</aside>
-
 <!-- ════════════════════════════════ MAIN CONTENT ═════════════════════════════ -->
 <main class="main-content">
+
+  <section class="profile-hero" aria-labelledby="profileName">
+    <div class="profile-hero-card">
+      <div class="author-avatar">
+        <img src="images/profile.jpg" alt="Liangjie Liu">
+      </div>
+
+      <div class="profile-hero-meta">
+        <div class="author-name" id="profileName">Liangjie Liu</div>
+        <div class="author-bio">PhD Student</div>
+        <div class="author-affiliation">
+          Dept. of ISEM<br>
+          National University of Singapore
+        </div>
+        <p class="profile-hero-note">
+          Researching data-driven decision making, reinforcement learning, and supply chain optimization.
+        </p>
+
+        <ul class="author-social">
+          <li>
+            <a href="mailto:liangjie_liu@outlook.com" title="Email">
+              <i class="fas fa-envelope"></i>
+              <span>liangjie_liu@outlook.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" title="Google Scholar" target="_blank" rel="noopener">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Google Scholar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" title="GitHub" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" title="LinkedIn" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="cv/Liangjie_Liu_CV.pdf" title="Curriculum Vitae" target="_blank" rel="noopener">
+              <i class="fas fa-file-alt"></i>
+              <span>Curriculum Vitae</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <section id="about">
     <h2>About Me</h2>
@@ -720,8 +830,8 @@
     document.getElementById('mastheadNav').classList.toggle('open');
   });
 
-  // Highlight active section in BOTH masthead nav and sidebar nav
-  const allNavLinks = document.querySelectorAll('.masthead-nav .nav-link, .sidebar-nav .nav-link');
+  // Highlight active section in the masthead navigation
+  const allNavLinks = document.querySelectorAll('.masthead-nav .nav-link');
   const sections = document.querySelectorAll('main section[id]');
 
   // Build map: section id → all matching links
