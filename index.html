@@ -35,7 +35,7 @@
 
     /* ─── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 15px; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-body);
       background: var(--body-bg);
@@ -76,19 +76,21 @@
     .masthead-nav {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
-      gap: 0.4rem;
+      justify-content: space-between;
+      gap: 0.45rem;
       width: 100%;
       max-width: 760px;
       margin: 0 auto;
     }
     .masthead-nav a {
+      flex: 1 1 0;
       color: rgba(255,255,255,0.75);
-      font-size: 0.8rem;
-      padding: 0.28rem 0.58rem;
+      font-size: 0.85rem;
+      padding: 0.34rem 0.62rem;
       border-radius: 3px;
       transition: all 0.15s;
       white-space: nowrap;
+      text-align: center;
     }
     .masthead-nav a:hover {
       color: #fff;
@@ -153,18 +155,18 @@
     /* Name & affiliation */
     .author-name {
       font-family: var(--font-body);
-      font-size: 1.14rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 0.2rem;
     }
     .author-bio {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 0.15rem;
     }
     .author-affiliation {
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       line-height: 1.5;
       margin-bottom: 0.85rem;
@@ -185,7 +187,7 @@
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       transition: color 0.15s;
       text-align: left;
@@ -218,7 +220,7 @@
 
     .main-content h2 {
       font-family: var(--font-heading);
-      font-size: 1.36rem;
+      font-size: 1.48rem;
       font-weight: 600;
       color: var(--text-primary);
       padding-bottom: 0.4rem;
@@ -228,7 +230,7 @@
 
     .main-content p {
       margin-bottom: 0.8rem;
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--text-primary);
     }
     .main-content p:last-child { margin-bottom: 0; }
@@ -241,7 +243,7 @@
       margin-top: 0.3rem;
       color: var(--text-primary);
     }
-    .research-list li { margin-bottom: 0.2rem; font-size: 0.98rem; }
+    .research-list li { margin-bottom: 0.2rem; font-size: 1.02rem; }
 
     /* ─── News ───────────────────────────────────────────────────── */
     .news-item {
@@ -249,14 +251,14 @@
       gap: 1rem;
       padding: 0.42rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: 0.94rem;
+      font-size: 1rem;
       align-items: baseline;
     }
     .news-item:last-child { border-bottom: none; }
     .news-date {
       flex-shrink: 0;
       min-width: 82px;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -280,12 +282,12 @@
     .paper-box-text { flex: 1; }
     .paper-title {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin-bottom: 0.3rem;
       color: var(--text-primary);
     }
     .paper-authors {
-      font-size: 0.875rem;
+      font-size: 0.94rem;
       color: var(--text-muted);
       margin-bottom: 0.3rem;
     }
@@ -303,9 +305,9 @@
       color: #1a56db;
       border: 1px solid #c3d3fb;
     }
-    .paper-abstract { font-size: 0.865rem; color: var(--text-muted); margin-bottom: 0.45rem; }
-    .paper-links a { font-size: 0.875rem; font-weight: 600; margin-right: 0.7rem; }
-    .coming-soon-text { font-size: 0.95rem; color: var(--text-muted); font-style: italic; }
+    .paper-abstract { font-size: 0.94rem; color: var(--text-muted); margin-bottom: 0.45rem; }
+    .paper-links a { font-size: 0.92rem; font-weight: 600; margin-right: 0.7rem; }
+    .coming-soon-text { font-size: 1rem; color: var(--text-muted); font-style: italic; }
 
     /* ─── Education & Experience rows ────────────────────────────── */
     .edu-item {
@@ -317,10 +319,10 @@
     }
     .edu-item:last-child { border-bottom: none; }
     .edu-meta { flex-shrink: 0; min-width: 150px; }
-    .edu-period { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
-    .edu-degree { font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; font-size: 0.95rem; }
-    .edu-school { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.1rem; }
-    .edu-detail { font-size: 0.82rem; color: var(--text-muted); }
+    .edu-period { font-size: 0.88rem; color: var(--text-muted); white-space: nowrap; }
+    .edu-degree { font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; font-size: 1.02rem; }
+    .edu-school { font-size: 0.94rem; color: var(--text-muted); margin-bottom: 0.1rem; }
+    .edu-detail { font-size: 0.9rem; color: var(--text-muted); }
 
     /* ─── Honors ─────────────────────────────────────────────────── */
     .honors-list li {
@@ -328,14 +330,14 @@
       gap: 1rem;
       padding: 0.42rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: 0.94rem;
+      font-size: 1rem;
       align-items: baseline;
     }
     .honors-list li:last-child { border-bottom: none; }
     .honor-year {
       flex-shrink: 0;
       min-width: 75px;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -369,11 +371,24 @@
         max-width: none;
       }
       .masthead-nav.open a {
-        padding: 0.55rem 0.5rem;
+        flex: none;
+        width: 100%;
+        padding: 0.8rem 0.5rem;
         border-bottom: 1px solid rgba(255,255,255,0.08);
-        font-size: 0.9rem;
+        border-radius: 0;
+        font-size: 1rem;
+        text-align: left;
       }
-      .masthead-toggle { display: block; }
+      .masthead {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 0 1rem;
+      }
+      .masthead-toggle {
+        display: block;
+        justify-self: end;
+        margin-left: 0;
+      }
+      .masthead-title { font-size: 1rem; }
 
       .sidebar {
         position: static;
@@ -394,15 +409,15 @@
       }
 
       .author-avatar {
-        width: 72px;
-        height: 72px;
+        width: 82px;
+        height: 82px;
         margin-bottom: 0;
         flex-shrink: 0;
       }
 
       .sidebar-text-group { flex: 1; min-width: 160px; }
 
-      .author-name { font-size: 1rem; }
+      .author-name { font-size: 1.08rem; }
       .sidebar-divider { display: none; }
 
       .author-social {
@@ -410,13 +425,13 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.2rem 1.1rem;
-        margin-top: 0.2rem;
+        margin-top: 0.35rem;
       }
       .author-social li { margin-bottom: 0; }
 
       .main-content {
         margin-left: 0;
-        padding: 1.5rem 1.25rem 3rem;
+        padding: 1.7rem 1.3rem 3rem;
       }
 
       footer { margin-left: 0; }
@@ -425,6 +440,34 @@
       .paper-box-image { max-width: 100%; flex-basis: auto; }
       .edu-item { flex-direction: column; gap: 0.2rem; }
       .edu-meta { min-width: auto; }
+    }
+
+    @media (max-width: 560px) {
+      .sidebar-inner {
+        padding: 1rem 0.95rem 1.15rem;
+      }
+
+      .main-content {
+        padding: 1.45rem 1rem 2.5rem;
+      }
+
+      .main-content h2 {
+        font-size: 1.34rem;
+      }
+
+      .main-content p,
+      .news-item,
+      .honors-list li {
+        font-size: 0.98rem;
+      }
+
+      .paper-authors,
+      .paper-abstract,
+      .edu-school,
+      .edu-detail,
+      .edu-period {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
