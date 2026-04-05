@@ -55,7 +55,8 @@
       background: var(--masthead-bg);
       display: flex;
       align-items: center;
-      padding: 0 1.5rem;
+      justify-content: space-between;
+      padding: 0 1.5rem 0 1.5rem;
       z-index: 200;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
@@ -66,8 +67,46 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       opacity: 0.9;
+      white-space: nowrap;
     }
     .masthead-title:hover { opacity: 1; text-decoration: none; }
+
+    /* Masthead nav (section links, right side) */
+    .masthead-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      margin-left: 1rem;
+    }
+    .masthead-nav a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 3px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .masthead-nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      text-decoration: none;
+    }
+    .masthead-nav a.active {
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* Hamburger for mobile */
+    .masthead-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.85);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.25rem 0.4rem;
+      margin-left: 0.5rem;
+    }
 
     /* ─── Sidebar: position fixed, white, below masthead ─────────── */
     .sidebar {
@@ -342,6 +381,27 @@
 
     /* ─── Mobile (≤900px) ────────────────────────────────────────── */
     @media (max-width: 900px) {
+      /* Masthead: hide inline nav, show hamburger */
+      .masthead-nav { display: none; }
+      .masthead-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: var(--masthead-height);
+        left: 0; right: 0;
+        background: var(--masthead-bg);
+        padding: 0.5rem 1rem 1rem;
+        gap: 0;
+        z-index: 190;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      .masthead-nav.open a {
+        padding: 0.55rem 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        font-size: 0.9rem;
+      }
+      .masthead-toggle { display: block; }
+
       .sidebar {
         position: static;
         width: 100%;
@@ -402,6 +462,15 @@
 <!-- ═══════════════════════════════════ MASTHEAD ══════════════════════════════ -->
 <header class="masthead">
   <a href="#about" class="masthead-title">Liangjie Liu</a>
+  <nav class="masthead-nav" id="mastheadNav" aria-label="Site sections">
+    <a href="#about"        class="nav-link active">About</a>
+    <a href="#news"         class="nav-link">News</a>
+    <a href="#publications" class="nav-link">Publications</a>
+    <a href="#education"    class="nav-link">Education</a>
+    <a href="#honors"       class="nav-link">Honors</a>
+    <a href="#experience"   class="nav-link">Experience</a>
+  </nav>
+  <button class="masthead-toggle" id="mastheadToggle" aria-label="Toggle navigation">&#9776;</button>
 </header>
 
 <!-- ═══════════════════════════════════ SIDEBAR ═══════════════════════════════ -->
@@ -628,36 +697,45 @@
 </footer>
 
 <script>
-  // Smooth scroll for anchor links
+  const mastheadPx = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue('--masthead-height')
+  );
+
+  // Smooth scroll — offset for fixed masthead
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        // Account for fixed masthead height when scrolling
-        const top = target.getBoundingClientRect().top + window.scrollY
-                    - parseInt(getComputedStyle(document.documentElement)
-                        .getPropertyValue('--masthead-height'));
+        const top = target.getBoundingClientRect().top + window.scrollY - mastheadPx;
         window.scrollTo({ top, behavior: 'smooth' });
+        // Close mobile menu if open
+        document.getElementById('mastheadNav').classList.remove('open');
       }
     });
   });
 
-  // Sidebar nav: highlight active section via IntersectionObserver
-  const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+  // Mobile hamburger toggle
+  document.getElementById('mastheadToggle').addEventListener('click', () => {
+    document.getElementById('mastheadNav').classList.toggle('open');
+  });
+
+  // Highlight active section in BOTH masthead nav and sidebar nav
+  const allNavLinks = document.querySelectorAll('.masthead-nav .nav-link, .sidebar-nav .nav-link');
   const sections = document.querySelectorAll('main section[id]');
+
+  // Build map: section id → all matching links
   const linkMap = {};
-  navLinks.forEach(a => { linkMap[a.getAttribute('href').slice(1)] = a; });
+  allNavLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    if (!linkMap[id]) linkMap[id] = [];
+    linkMap[id].push(a);
+  });
 
   function setActive(id) {
-    navLinks.forEach(a => a.classList.remove('active'));
-    if (linkMap[id]) linkMap[id].classList.add('active');
+    allNavLinks.forEach(a => a.classList.remove('active'));
+    if (linkMap[id]) linkMap[id].forEach(a => a.classList.add('active'));
   }
-
-  const mastheadPx = parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue('--masthead-height')
-  );
-  const topMargin = -(mastheadPx + 10);
 
   const observer = new IntersectionObserver(entries => {
     let topEntry = null;
@@ -670,7 +748,7 @@
     });
     if (topEntry) setActive(topEntry.target.id);
   }, {
-    rootMargin: `${topMargin}px 0px -55% 0px`,
+    rootMargin: `${-(mastheadPx + 10)}px 0px -55% 0px`,
     threshold: 0
   });
 
